@@ -1,0 +1,22 @@
+[[bin]]
+name = "pillow-cli"
+path = "src/main.rs"
+
+[package]
+name = "pillow-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["SummaryPuppet"]
+description = ""
+keywords = ["cli"]
+license = ""
+homepage = ""
+documentation = ""
+repository = ""
+readme = ""
+include = ["/templates"]
+exclude = ["/examples"]
+publish = false
+
+[dependencies]
+clap = { version = "4.0.19", features = ["derive"] }
