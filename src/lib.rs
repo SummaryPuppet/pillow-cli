@@ -1,4 +1,8 @@
 mod init;
+mod make;
+mod run;
+
+use std::process::exit;
 
 use clap::{Parser, Subcommand};
 
@@ -9,9 +13,16 @@ pub struct Cli {
     command: Option<Commands>,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 enum Commands {
-    Init(init::Options),
+    /// Create a new project with cargo-generate
+    Init,
+
+    /// Run the server with cargo-watch
+    Run,
+
+    /// Make
+    Make(make::Make),
 }
 
 impl Cli {
@@ -19,10 +30,25 @@ impl Cli {
         let cli = Cli::parse();
 
         match &cli.command {
-            Some(Commands::Init(options)) => {
-                options.init_project();
+            Some(command) => match command {
+                Commands::Init => {
+                    init::init();
+                }
+
+                Commands::Run => {
+                    run::run();
+                }
+
+                Commands::Make(s) => match &s.command {
+                    make::Commands::Route(r) => {
+                        println!("route: {:#?}", r);
+                    }
+                    make::Commands::Migrate => println!("migrate"),
+                },
+            },
+            None => {
+                exit(0);
             }
-            None => {}
         }
     }
 }
