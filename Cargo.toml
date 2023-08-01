@@ -7,16 +7,15 @@ name = "pillow-cli"
 version = "0.1.0"
 edition = "2021"
 authors = ["SummaryPuppet"]
-description = ""
+description = "A pillow cli for pillow framework"
 keywords = ["cli"]
 license = ""
 homepage = ""
 documentation = ""
 repository = ""
-readme = ""
-include = ["/templates"]
-exclude = ["/examples"]
-publish = false
+readme = "README.md"
+exclude = ["/examples", "/test"]
+publish = true
 
 [dependencies]
 clap = { version = "4.0.19", features = ["derive"] }
